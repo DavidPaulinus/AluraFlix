@@ -7,17 +7,21 @@ import org.springframework.stereotype.Service;
 
 import br.com.AluraFlix.model.Video;
 import br.com.AluraFlix.util.repository.VideoReposiroty;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class VideoService {
-	
+
 	@Autowired
 	private VideoReposiroty repo;
-	
-	public Page<Video> listar(){
+
+	public Page<Video> listar() {
 		return new PageImpl<Video>(repo.findAll());
 	}
-	
-	
-	
+
+	public Video detalharPorId(Long id) {
+		return repo.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Não encontrado."));
+	}
+
 }
