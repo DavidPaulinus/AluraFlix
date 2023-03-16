@@ -24,4 +24,8 @@ public class VideoService {
 				.orElseThrow(() -> new EntityNotFoundException("Não encontrado."));
 	}
 
+	public void salvarVideo(Video video) {
+		repo.save(video);
+	}
+
 }
