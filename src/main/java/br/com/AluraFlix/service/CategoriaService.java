@@ -34,5 +34,11 @@ public class CategoriaService {
 		
 		return cat;
 	}
+
+	public String apagarPorId(Long id) {
+		repo.delete(detalharPorId(id));
+		
+		return "Sucesso.";
+	}
 	
 }

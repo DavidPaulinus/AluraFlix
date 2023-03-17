@@ -3,6 +3,7 @@ package br.com.AluraFlix.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,5 +57,13 @@ public class CategoriasController {
 		var categoria = service.atualizar(id, dto);
 		
 		return ResponseEntity.ok(new CategoriaDetalharDTO(categoria));
+	}
+	
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<String> deletarCategoria(@PathVariable Long id){
+		var mensagem = service.apagarPorId(id);
+		
+		return ResponseEntity.ok(mensagem);
 	}
 }
