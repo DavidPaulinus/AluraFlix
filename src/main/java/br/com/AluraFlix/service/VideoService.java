@@ -26,15 +26,22 @@ public class VideoService {
 				.orElseThrow(() -> new EntityNotFoundException("Não encontrado."));
 	}
 
-	public void salvarVideo(Video video) {
+	public void salvarVideo(@Valid Video video) {
 		repo.save(video);
 	}
 
 	public Video atualizar(Long id, @Valid VideoDTO dto) {
-		var vid = repo.getReferenceById(id);
+		var vid = detalharPorId(id);
 		vid.atualizar(dto);
 		
 		return vid;
+	}
+
+	public String apagar(Long id) {
+		var video = detalharPorId(id);
+		
+		repo.deleteById(video.getId());	
+		return "Sucesso!";
 	}
 
 }
