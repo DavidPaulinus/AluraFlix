@@ -1,5 +1,6 @@
 package br.com.AluraFlix.model;
 
+import br.com.AluraFlix.model.record.categoria.CategoriaDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,4 +21,9 @@ public class Categoria {
 	private Long id;
 	private String titulo;
 	private String cor;
+
+	public Categoria(CategoriaDTO dto) {
+		this.titulo = dto.titulo();
+		this.cor = dto.cor();
+	}
 }

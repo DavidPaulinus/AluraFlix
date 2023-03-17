@@ -21,5 +21,9 @@ public class CategoriaService {
 	public Categoria detalharPorId(Long id) {
 		return repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Não encontrado."));
 	}
+
+	public void cadastrar(Categoria categoria) {
+		repo.save(categoria);
+	}
 	
 }
