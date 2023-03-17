@@ -29,4 +29,10 @@ public class Video {
 		this.descricao = dto.descricao();
 		this.url = dto.url();
 	}
+	
+	public void atualizar(VideoDTO dto) {
+		this.titulo = dto.titulo();
+		this.descricao = dto.descricao();
+		this.url = dto.url();
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,5 +48,13 @@ public class AluraFlixController {
 				buildAndExpand(video.getId()).toUri()
 				)
 				.body(new VideoDetalhamentoDTO(video));
+	}
+	
+	@PutMapping("/{id}")
+	@Transactional
+	public ResponseEntity<VideoDetalhamentoDTO> atualizarVideo(@RequestBody @Valid VideoDTO dto, @PathVariable Long id){
+		var vid = service.atualizar(id, dto);
+		
+		return ResponseEntity.ok(new VideoDetalhamentoDTO(vid));
 	}
 }
