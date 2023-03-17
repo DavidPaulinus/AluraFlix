@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.AluraFlix.model.Categoria;
 import br.com.AluraFlix.util.repository.CategoriaRepository;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -15,6 +16,10 @@ public class CategoriaService {
 
 	public Page<Categoria> listar() {
 		return new PageImpl<Categoria>(repo.findAll());
+	}
+
+	public Categoria detalharPorId(Long id) {
+		return repo.findById(id).orElseThrow(() -> new EntityNotFoundException("Não encontrado."));
 	}
 	
 }
