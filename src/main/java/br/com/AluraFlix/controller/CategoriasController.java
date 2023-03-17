@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import br.com.AluraFlix.model.record.categoria.CategoriaDTO;
 import br.com.AluraFlix.model.record.categoria.CategoriaDetalharDTO;
 import br.com.AluraFlix.model.record.categoria.CategoriaListarDTO;
 import br.com.AluraFlix.service.CategoriaService;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
@@ -35,6 +37,7 @@ public class CategoriasController {
 	}
 	
 	@PostMapping
+	@Transactional
 	public ResponseEntity<CategoriaDetalharDTO> cadastrarCategoria(@RequestBody @Valid CategoriaDTO dto, UriComponentsBuilder uri){
 		var categoria = new Categoria(dto);
 		
@@ -45,5 +48,13 @@ public class CategoriasController {
 				.buildAndExpand(categoria.getId()).toUri()
 				)
 				.body(new CategoriaDetalharDTO(categoria));
+	}
+	
+	@PutMapping("/{id}")
+	@Transactional
+	public ResponseEntity<CategoriaDetalharDTO> atualizarCategoria(@RequestBody @Valid CategoriaDTO dto, @PathVariable Long id){
+		var categoria = service.atualizar(id, dto);
+		
+		return ResponseEntity.ok(new CategoriaDetalharDTO(categoria));
 	}
 }
