@@ -1,4 +1,4 @@
-package br.com.AluraFlix.model.record;
+package br.com.AluraFlix.model.record.video;
 
 import br.com.AluraFlix.model.Video;
 

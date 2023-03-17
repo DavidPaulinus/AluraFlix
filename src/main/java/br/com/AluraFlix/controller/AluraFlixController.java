@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.AluraFlix.model.Video;
-import br.com.AluraFlix.model.record.VideoDTO;
-import br.com.AluraFlix.model.record.VideoDetalhamentoDTO;
-import br.com.AluraFlix.model.record.VideoListarDTO;
+import br.com.AluraFlix.model.record.video.VideoDTO;
+import br.com.AluraFlix.model.record.video.VideoDetalhamentoDTO;
+import br.com.AluraFlix.model.record.video.VideoListarDTO;
 import br.com.AluraFlix.service.VideoService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

@@ -6,7 +6,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import br.com.AluraFlix.model.Video;
-import br.com.AluraFlix.model.record.VideoDTO;
+import br.com.AluraFlix.model.record.video.VideoDTO;
 import br.com.AluraFlix.util.repository.VideoReposiroty;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;

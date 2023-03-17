@@ -1,4 +1,4 @@
-package br.com.AluraFlix.model.record;
+package br.com.AluraFlix.model.record.video;
 
 import jakarta.validation.constraints.NotBlank;
 

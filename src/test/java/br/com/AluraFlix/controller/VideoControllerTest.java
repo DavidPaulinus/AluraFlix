@@ -12,7 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import br.com.AluraFlix.model.record.VideoDTO;
+import br.com.AluraFlix.model.record.video.VideoDTO;
 
 @SpringBootTest
 @AutoConfigureMockMvc
