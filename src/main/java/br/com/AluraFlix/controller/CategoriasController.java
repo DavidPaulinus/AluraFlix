@@ -17,6 +17,7 @@ import br.com.AluraFlix.model.Categoria;
 import br.com.AluraFlix.model.record.categoria.CategoriaDTO;
 import br.com.AluraFlix.model.record.categoria.CategoriaDetalharDTO;
 import br.com.AluraFlix.model.record.categoria.CategoriaListarDTO;
+import br.com.AluraFlix.model.record.video.VideoListarDTO;
 import br.com.AluraFlix.service.CategoriaService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -35,6 +36,11 @@ public class CategoriasController {
 	@GetMapping("/{id}")
 	public ResponseEntity<CategoriaDetalharDTO> detalharCategoria(@PathVariable Long id){
 		return ResponseEntity.ok(new CategoriaDetalharDTO(service.detalharPorId(id)));
+	}
+	
+	@GetMapping("/{id}/videos")
+	public ResponseEntity<Page<VideoListarDTO>> exibirVideoPorCategoria(@PathVariable Long id){
+		return ResponseEntity.ok(service.exibirVideoPorCategoria(id).map(VideoListarDTO::new));
 	}
 		
 	@PostMapping

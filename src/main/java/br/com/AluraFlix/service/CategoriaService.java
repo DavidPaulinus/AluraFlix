@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import br.com.AluraFlix.model.Categoria;
+import br.com.AluraFlix.model.Video;
 import br.com.AluraFlix.model.record.categoria.CategoriaDTO;
 import br.com.AluraFlix.util.repository.CategoriaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -39,6 +40,10 @@ public class CategoriaService {
 		repo.delete(detalharPorId(id));
 
 		return "Sucesso.";
+	}
+
+	public Page<Video> exibirVideoPorCategoria(Long id) {
+		return new PageImpl<Video>(repo.achaVideoPorCategoria(id));
 	}
 
 }
