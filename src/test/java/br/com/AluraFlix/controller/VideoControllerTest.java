@@ -30,7 +30,7 @@ public class VideoControllerTest {
 	
 	@Test
 	void deveRetornar201PorCadastrarVideo() throws Exception {		
-		var video = json.write(new VideoDTO("titulo","descricao","url")).getJson();
+		var video = json.write(new VideoDTO(1l,"titulo","descricao","url", null)).getJson();
 		
 		mock.perform(MockMvcRequestBuilders.post(uri)
 				.contentType(MediaType.APPLICATION_JSON)
@@ -50,7 +50,7 @@ public class VideoControllerTest {
 	
 	@Test
 	void deveRetornar200PorAtualizarVideo() throws Exception {
-		var video = json.write(new VideoDTO("titulo2","descricao","url")).getJson();
+		var video = json.write(new VideoDTO(1l,"titulo2","descricao","url", null)).getJson();
 		
 		mock.perform(MockMvcRequestBuilders.put(uri + "/{id}", 4)
 				.contentType(MediaType.APPLICATION_JSON)

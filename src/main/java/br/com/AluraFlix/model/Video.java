@@ -2,9 +2,9 @@ package br.com.AluraFlix.model;
 
 import br.com.AluraFlix.model.record.video.VideoDTO;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -18,21 +18,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Video {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
 	private String descricao;
 	private String url;
-
-	public Video(@Valid VideoDTO dto) {
-		this.titulo = dto.titulo();
-		this.descricao = dto.descricao();
-		this.url = dto.url();
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Categoria categoria;
 	
-	public void atualizar(VideoDTO dto) {
+	public Video(@Valid VideoDTO dto){
+		this.id = dto.id();
 		this.titulo = dto.titulo();
 		this.descricao = dto.descricao();
 		this.url = dto.url();
+		this.categoria = dto.categoria();
+	}
+
+	public void atualizar(@Valid VideoDTO dto){
+		this.id = dto.id();
+		this.titulo = dto.titulo();
+		this.descricao = dto.descricao();
+		this.url = dto.url();
+		this.categoria = dto.categoria();
 	}
 }

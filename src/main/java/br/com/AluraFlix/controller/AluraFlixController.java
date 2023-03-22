@@ -1,5 +1,7 @@
 package br.com.AluraFlix.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -18,6 +21,7 @@ import br.com.AluraFlix.model.record.video.VideoDTO;
 import br.com.AluraFlix.model.record.video.VideoDetalhamentoDTO;
 import br.com.AluraFlix.model.record.video.VideoListarDTO;
 import br.com.AluraFlix.service.VideoService;
+import jakarta.servlet.ServletException;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -38,9 +42,14 @@ public class AluraFlixController {
 		return ResponseEntity.ok(new VideoDetalhamentoDTO(service.detalharPorId(id)));
 	}
 	
+	@GetMapping("/")
+	public ResponseEntity<Page<VideoListarDTO>> getVideoQueryParamaters(@RequestParam("search") String nome){
+		return ResponseEntity.ok(service.listarPorNome(nome).map(VideoListarDTO::new));
+	}
+	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<VideoDetalhamentoDTO> cadastraVideo(@RequestBody @Valid VideoDTO dto, UriComponentsBuilder uri){
+	public ResponseEntity<VideoDetalhamentoDTO> cadastraVideo(@RequestBody @Valid VideoDTO dto, UriComponentsBuilder uri) throws IOException, ServletException{
 		var video = new Video(dto);	
 		service.salvarVideo(video);
 		

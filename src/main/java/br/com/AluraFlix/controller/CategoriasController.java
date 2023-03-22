@@ -36,7 +36,7 @@ public class CategoriasController {
 	public ResponseEntity<CategoriaDetalharDTO> detalharCategoria(@PathVariable Long id){
 		return ResponseEntity.ok(new CategoriaDetalharDTO(service.detalharPorId(id)));
 	}
-	
+		
 	@PostMapping
 	@Transactional
 	public ResponseEntity<CategoriaDetalharDTO> cadastrarCategoria(@RequestBody @Valid CategoriaDTO dto, UriComponentsBuilder uri){

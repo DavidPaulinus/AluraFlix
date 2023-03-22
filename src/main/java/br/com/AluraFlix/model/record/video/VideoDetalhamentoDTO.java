@@ -2,8 +2,8 @@ package br.com.AluraFlix.model.record.video;
 
 import br.com.AluraFlix.model.Video;
 
-public record VideoDetalhamentoDTO(String titulo, String descricao, String url) {
+public record VideoDetalhamentoDTO(Long id, String titulo, String descricao, String url, Long categoriaId) {
 	public VideoDetalhamentoDTO(Video vid) {
-		this(vid.getTitulo(), vid.getDescricao(), vid.getUrl());
+		this(vid.getId(), vid.getTitulo(), vid.getDescricao(), vid.getUrl(), vid.getCategoria().getId());
 	}
 }

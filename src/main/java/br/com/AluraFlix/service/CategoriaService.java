@@ -31,14 +31,14 @@ public class CategoriaService {
 	public Categoria atualizar(Long id, @Valid CategoriaDTO dto) {
 		var cat = repo.getReferenceById(id);
 		cat.atualizar(dto);
-		
+
 		return cat;
 	}
 
 	public String apagarPorId(Long id) {
 		repo.delete(detalharPorId(id));
-		
+
 		return "Sucesso.";
 	}
-	
+
 }
